@@ -3,13 +3,12 @@
  */
 package pachauri_CSCI201L_Assignment1;
 
-import java.util.List;
-
 /**
  * @author Nilay Pachauri
  *
  */
-public class Users {
+public class Name {
 
-	private List <User> users = null;
+	private String fname;
+	private String lname;
 }

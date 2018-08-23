@@ -9,7 +9,8 @@ import java.util.List;
  * @author Nilay Pachauri
  *
  */
-public class Users {
+public class User {
 
-	private List <User> users = null;
+	private Name name;
+	private List <Event> events = null;
 }

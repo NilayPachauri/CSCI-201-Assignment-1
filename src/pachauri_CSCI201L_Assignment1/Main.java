@@ -27,7 +27,7 @@ public class Main {
 		System.out.print("What is the name of the input file?");
 		try {
 			String inputFileName = br.readLine();
-			gson.fromJson(br, Events.class);
+			gson.fromJson(br, Users.class);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

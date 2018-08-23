@@ -3,13 +3,13 @@
  */
 package pachauri_CSCI201L_Assignment1;
 
-import java.util.List;
-
 /**
  * @author Nilay Pachauri
  *
  */
-public class Users {
+public class Date {
 
-	private List <User> users = null;
+	private String month;
+	private int day;
+	private int year;
 }

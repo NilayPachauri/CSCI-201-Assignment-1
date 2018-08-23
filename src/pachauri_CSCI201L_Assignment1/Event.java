@@ -3,13 +3,13 @@
  */
 package pachauri_CSCI201L_Assignment1;
 
-import java.util.List;
-
 /**
  * @author Nilay Pachauri
  *
  */
-public class Users {
+public class Event {
 
-	private List <User> users = null;
+	private String title;
+	private String time;
+	private Date date;
 }
