@@ -23,6 +23,10 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+		Users users = parseJSON();
+	}
+	
+	private static Users parseJSON()	{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		Gson gson = new Gson();
 		Users users = null;
@@ -44,7 +48,7 @@ public class Main {
 			}
 		}
 		
-		
+		return users;
 	}
 
 }
