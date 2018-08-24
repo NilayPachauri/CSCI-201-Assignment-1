@@ -4,6 +4,10 @@ package pachauri_CSCI201L_Assignment1;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * @author Nilay Pachauri
+ *
+ */
 public class Name {
 
     @SerializedName("Fname")
@@ -12,21 +16,29 @@ public class Name {
     @SerializedName("Lname")
     @Expose
     private String lname;
-
-    public String getFname() {
-        return fname;
-    }
-
-    public void setFname(String fname) {
-        this.fname = fname;
-    }
-
-    public String getLname() {
-        return lname;
-    }
-
-    public void setLname(String lname) {
-        this.lname = lname;
-    }
+	/**
+	 * @return the fname
+	 */
+	public String getFname() {
+		return fname;
+	}
+	/**
+	 * @param fname the fname to set
+	 */
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+	/**
+	 * @return the lname
+	 */
+	public String getLname() {
+		return lname;
+	}
+	/**
+	 * @param lname the lname to set
+	 */
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
 
 }

@@ -28,7 +28,6 @@ public class Main {
 		Users users = null;
 		boolean isJSON = false;
 		
-		
 		while (!isJSON) {
 			System.out.print("What is the name of the input file? ");
 			
