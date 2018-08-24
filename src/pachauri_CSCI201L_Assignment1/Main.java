@@ -4,6 +4,7 @@
 package pachauri_CSCI201L_Assignment1;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -27,20 +28,21 @@ public class Main {
 		Gson gson = new Gson();
 		boolean isJSON = false;
 		
-		
-		System.out.print("What is the name of the input file?");
+
 		while (!isJSON) {
+			System.out.print("What is the name of the input file? ");
+			
 			try {
 				String inputFileName = br.readLine();
-				Users users = gson.fromJson(br, Users.class);
+				Users users = gson.fromJson(new BufferedReader(new FileReader(inputFileName)), Users.class);
 				isJSON = true;
-			} catch (IOException ioe) {
-				System.out.println("ioe: " + ioe.getMessage());
 			} catch (JsonIOException jioe) {
 				System.out.println("That file could not be found.");
 			} catch (JsonSyntaxException jse) {
 				System.out.println("That file is not a well-formed JSON file.");
-			} 
+			} catch (IOException ioe) {
+				System.out.println("ioe: " + ioe.getMessage());
+			}
 		}
 		
 		
