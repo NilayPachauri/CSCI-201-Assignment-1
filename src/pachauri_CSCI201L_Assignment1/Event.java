@@ -1,7 +1,6 @@
 
 package pachauri_CSCI201L_Assignment1;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -11,13 +10,10 @@ import com.google.gson.annotations.SerializedName;
 public class Event {
 
     @SerializedName("Title")
-    @Expose
     private String title;
     @SerializedName("Time")
-    @Expose
     private String time;
     @SerializedName("Date")
-    @Expose
     private Date date;
 	/**
 	 * @return the title

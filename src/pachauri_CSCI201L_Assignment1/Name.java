@@ -1,7 +1,6 @@
 
 package pachauri_CSCI201L_Assignment1;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -11,10 +10,8 @@ import com.google.gson.annotations.SerializedName;
 public class Name {
 
     @SerializedName("Fname")
-    @Expose
     private String fname;
     @SerializedName("Lname")
-    @Expose
     private String lname;
 	/**
 	 * @return the fname

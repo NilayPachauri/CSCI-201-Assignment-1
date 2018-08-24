@@ -2,7 +2,6 @@
 package pachauri_CSCI201L_Assignment1;
 
 import java.util.List;
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -12,10 +11,8 @@ import com.google.gson.annotations.SerializedName;
 public class User {
 
     @SerializedName("Name")
-    @Expose
     private Name name;
     @SerializedName("Events")
-    @Expose
     private List<Event> events = null;
 	/**
 	 * @return the name
