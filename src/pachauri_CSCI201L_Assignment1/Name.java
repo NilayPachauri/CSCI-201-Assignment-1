@@ -1,38 +1,32 @@
-/**
- * 
- */
+
 package pachauri_CSCI201L_Assignment1;
 
-/**
- * @author Nilay Pachauri
- *
- */
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Name {
 
-	private String fname;
-	private String lname;
-	/**
-	 * @return the fname
-	 */
-	public String getFname() {
-		return fname;
-	}
-	/**
-	 * @param fname the fname to set
-	 */
-	public void setFname(String fname) {
-		this.fname = fname;
-	}
-	/**
-	 * @return the lname
-	 */
-	public String getLname() {
-		return lname;
-	}
-	/**
-	 * @param lname the lname to set
-	 */
-	public void setLname(String lname) {
-		this.lname = lname;
-	}
+    @SerializedName("Fname")
+    @Expose
+    private String fname;
+    @SerializedName("Lname")
+    @Expose
+    private String lname;
+
+    public String getFname() {
+        return fname;
+    }
+
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+
+    public String getLname() {
+        return lname;
+    }
+
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
+
 }

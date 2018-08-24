@@ -1,29 +1,22 @@
-/**
- * 
- */
+
 package pachauri_CSCI201L_Assignment1;
 
 import java.util.List;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-/**
- * @author Nilay Pachauri
- *
- */
 public class Users {
 
-	private List <User> users = null;
+    @SerializedName("Users")
+    @Expose
+    private List<User> users = null;
 
-	/**
-	 * @return the users
-	 */
-	public List <User> getUsers() {
-		return users;
-	}
+    public List<User> getUsers() {
+        return users;
+    }
 
-	/**
-	 * @param users the users to set
-	 */
-	public void setUsers(List <User> users) {
-		this.users = users;
-	}
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
 }
