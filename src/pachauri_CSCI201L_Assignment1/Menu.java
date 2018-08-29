@@ -3,6 +3,7 @@
  */
 package pachauri_CSCI201L_Assignment1;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -12,14 +13,14 @@ import java.util.Scanner;
  */
 public class Menu {
 
-	private int option;
+	private ArrayList<User> userList = null;
 	
 	/*
 	 * Constructor for the Menu
 	 */
-	public Menu()	{
+	public Menu(Calendar cal)	{
 		
-		this.option = 0;
+		this.userList = (ArrayList<User>) cal.getUsers();
 	}
 	
 	/*
@@ -126,11 +127,16 @@ public class Menu {
 	}
 
 	/**
-	 * 
+	 * Displays the User's Calendar from the JSON file
 	 */
 	private void displayUsersCalendar() {
 		// TODO Auto-generated method stub
-		
+		for (int i = 0; i < this.userList.size(); i++)	{
+			System.out.println((i + 1) + ") " + this.userList.get(i).getName());
+			for (int j = 0; j < this.userList.get(i).getEvents().size(); j++)	{
+				System.out.println(('a' + j) + ". " + this.userList.get(i).getEvents().get(j));
+			}
+		}
 	}
 
 	/**

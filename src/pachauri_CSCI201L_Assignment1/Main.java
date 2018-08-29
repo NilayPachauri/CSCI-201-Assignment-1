@@ -16,11 +16,9 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		Init init = new Init();
-		Menu menu = new Menu();
-		
-		
-		
-		
+		Menu menu = new Menu(init.getCalendar());
+		int option = menu.getOption();
+		menu.performOption(option);		
 	}
 	
 }
