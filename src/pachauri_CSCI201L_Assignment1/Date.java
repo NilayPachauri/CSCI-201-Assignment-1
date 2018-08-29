@@ -16,6 +16,23 @@ public class Date {
     @SerializedName("Year")
     private Integer year;
     
+    /**
+     * Date Constructor with No Parameters
+     */
+    public Date()	{
+    	
+    }
+	/**
+	 * Date Constructor with Parameters
+	 * @param month the month
+	 * @param day the day
+	 * @param year the year
+	 */
+	public Date(String month, Integer day, Integer year) {
+		this.month = month;
+		this.day = day;
+		this.year = year;
+	}
 	/**
 	 * @return the month
 	 */

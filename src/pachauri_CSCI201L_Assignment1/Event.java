@@ -15,6 +15,25 @@ public class Event {
     private String time;
     @SerializedName("Date")
     private Date date;
+    
+    /**
+     * Event Constructor with No Parameters
+     */
+    public Event()	{
+    	
+    }
+    /**
+     * Event Constructor with Parameters
+     * @param title the title of the event
+     * @param time the time the event occurs
+     * @param date the date the event occurs
+     */
+    public Event(String title, String time, Date date)	{
+    	this.title = title;
+    	this.time = time;
+    	this.date = date;
+    }
+    
 	/**
 	 * @return the title
 	 */
