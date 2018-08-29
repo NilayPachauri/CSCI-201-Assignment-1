@@ -79,6 +79,7 @@ public class Main {
 				throw new InputMismatchException();
 		} catch	(InputMismatchException ime){
 			System.out.println("That is not a valid option");
+			option = 0;
 		}
 		
 		return option;	
