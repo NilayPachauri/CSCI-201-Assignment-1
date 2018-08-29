@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
  * @author Nilay Pachauri
  *
  */
-public class Users {
+public class Calendar {
 
     @SerializedName("Users")
     private List<User> users = null;
