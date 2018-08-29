@@ -12,7 +12,7 @@ import java.util.Scanner;
  */
 public class Menu {
 
-	int option;
+	private int option;
 	
 	/*
 	 * Constructor for the Menu
@@ -69,5 +69,59 @@ public class Menu {
 		while (option == 0)
 			option = getOptionHelper();
 		return option;
+	}
+	
+	/*
+	 * Handles the option the user chose
+	 */
+	public void performOption(int option)	{
+		
+		switch (option)	{
+		
+			case 1:	{
+				displayUsersCalendar();
+				break;
+			}
+			
+			case 2:	{
+				addUser();
+				break;
+			}
+			
+			case 3:	{
+				removeUser();
+				break;
+			}
+			
+			case 4:	{
+				addEvent();
+				break;
+			}
+			
+			case 5:	{
+				deleteEvent();
+				break;
+			}
+			
+			case 6:	{
+				sortUsers();
+				break;
+			}
+			
+			case 7:	{
+				writeFile();
+				break;
+			}
+			
+			case 8: {
+				exit();
+				break;
+			}
+			
+			default:	{
+				System.out.println("This should never occur. Congrats, you've broken the program");
+				break;
+			}
+		}
 	}
 }

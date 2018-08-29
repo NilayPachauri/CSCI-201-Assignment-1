@@ -16,7 +16,9 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		Init init = new Init();
-		int option = init.getOption();
+		Menu menu = new Menu();
+		
+		
 		
 		
 	}
