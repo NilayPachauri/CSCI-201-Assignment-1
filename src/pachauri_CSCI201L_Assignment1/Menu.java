@@ -3,6 +3,7 @@
  */
 package pachauri_CSCI201L_Assignment1;
 
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -203,7 +204,9 @@ public class Menu {
 
 		System.out.println();
 		System.out.print("What year? ");
-		int year = scan.nextInt();		
+		int year = scan.nextInt();
+		
+		Event e = new Event(title, time, new Date(Month.of(month).name(), day, year));
 	}
 
 	/**
