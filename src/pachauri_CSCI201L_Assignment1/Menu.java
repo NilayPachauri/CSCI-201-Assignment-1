@@ -23,15 +23,37 @@ public class Menu {
 		this.userList = (ArrayList<User>) cal.getUsers();
 	}
 	
-	/*
-	 * Prompts the user for an option between 1 to 8:
-	 *  1) Display User's Calendar
-	 *  2) Add User
-	 *  3) Remove User
-	 *  4) Add Event
-	 *  5) Delete Event
-	 *  6) Sort Users
-	 *  7) Write File
+	/**
+	 * 
+	 * @param num The number of the last available option
+	 * @return A valid option the user selects
+	 */
+	private int checkOption(int num)	{
+		Scanner s = new Scanner(System.in);
+		int option = 0;
+		
+		try	{
+			option = s.nextInt();
+			if ((option < 1) || (option > num))
+				throw new InputMismatchException();
+		} catch	(InputMismatchException ime){
+			System.out.println("That is not a valid option");
+			option = 0;
+		}
+		
+		return option;
+	}
+	
+	
+	/**
+	 * Prompts the user for an option between 1 to 8:<br>
+	 *  1) Display User's Calendar<br>
+	 *  2) Add User<br>
+	 *  3) Remove User<br>
+	 *  4) Add Event<br>
+	 *  5) Delete Event<br>
+	 *  6) Sort Users<br>
+	 *  7) Write File<br>
 	 *  8) Exit
 	 */
 	private int getOptionHelper()	{
@@ -47,19 +69,7 @@ public class Menu {
 		System.out.println();
 		System.out.print("What would you like to do? ");
 		
-		Scanner s = new Scanner(System.in);
-		int option = 0;
-		
-		try	{
-			option = s.nextInt();
-			if ((option < 1) || (option > 8))
-				throw new InputMismatchException();
-		} catch	(InputMismatchException ime){
-			System.out.println("That is not a valid option");
-			option = 0;
-		}
-		
-		return option;	
+		return checkOption(8);
 	}
 
 	/*
@@ -140,7 +150,7 @@ public class Menu {
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	private void addUser() {
 		// TODO Auto-generated method stub
@@ -156,10 +166,24 @@ public class Menu {
 	}
 
 	/**
-	 * 
+	 * Add an event to the Calendar under an existing User
 	 */
 	private void addEvent() {
 		// TODO Auto-generated method stub
+		
+		System.out.println();
+		
+		for (int i = 0; i < this.userList.size(); i++)
+			System.out.println((i + 1) + ") " + this.userList.get(i).getName());
+		
+		System.out.println();
+		System.out.println("To which user would you like to add an event?");
+		
+		int option = 0;
+		while (option == 0)
+			option = checkOption(this.userList.size());
+		
+		
 		
 	}
 
