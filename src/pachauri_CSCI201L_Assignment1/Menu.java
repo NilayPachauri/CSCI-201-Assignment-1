@@ -124,4 +124,68 @@ public class Menu {
 			}
 		}
 	}
+
+	/**
+	 * 
+	 */
+	private void displayUsersCalendar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * 
+	 */
+	private void addUser() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * 
+	 */
+	private void removeUser() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * 
+	 */
+	private void addEvent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * 
+	 */
+	private void deleteEvent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * 
+	 */
+	private void sortUsers() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * 
+	 */
+	private void writeFile() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * 
+	 */
+	private void exit() {
+		// TODO Auto-generated method stub
+		
+	}
 }
