@@ -183,8 +183,27 @@ public class Menu {
 		while (option == 0)
 			option = checkOption(this.userList.size());
 		
+		Scanner scan = new Scanner(System.in);
 		
+		System.out.println();
+		System.out.print("What is the title of the event? ");
+		String title = scan.nextLine();
 		
+		System.out.println();
+		System.out.print("What time is the event? ");
+		String time = scan.nextLine();
+
+		System.out.println();
+		System.out.print("What month? ");
+		int month = scan.nextInt();
+
+		System.out.println();
+		System.out.print("What day? ");
+		int day = scan.nextInt();
+
+		System.out.println();
+		System.out.print("What year? ");
+		int year = scan.nextInt();		
 	}
 
 	/**
