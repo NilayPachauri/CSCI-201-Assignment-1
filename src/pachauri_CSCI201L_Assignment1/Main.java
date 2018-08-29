@@ -7,6 +7,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -24,6 +26,10 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		Users users = parseJSON();
+		
+		int option = 0;
+		while (option == 0)
+			option = getOption();
 	}
 	
 	private static Users parseJSON()	{
@@ -49,6 +55,33 @@ public class Main {
 		}
 		
 		return users;
+	}
+	
+	private static int getOption()	{
+		System.out.println();
+		System.out.println("\t 1) Display User's Calendar");
+		System.out.println("\t 2) Add User");
+		System.out.println("\t 3) Remove User");
+		System.out.println("\t 4) Add Event");
+		System.out.println("\t 5) Delete Event");
+		System.out.println("\t 6) Sort Users");
+		System.out.println("\t 7) Write File");
+		System.out.println("\t 8) Exit");
+		System.out.println();
+		System.out.print("What would you like to do? ");
+		
+		Scanner s = new Scanner(System.in);
+		int option = 0;
+		
+		try	{
+			option = s.nextInt();
+			if ((option < 1) || (option > 8))
+				throw new InputMismatchException();
+		} catch	(InputMismatchException ime){
+			System.out.println("That is not a valid option");
+		}
+		
+		return option;	
 	}
 
 }
