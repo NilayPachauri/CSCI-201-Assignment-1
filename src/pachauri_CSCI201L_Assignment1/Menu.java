@@ -134,7 +134,7 @@ public class Menu {
 		for (int i = 0; i < this.userList.size(); i++)	{
 			System.out.println((i + 1) + ") " + this.userList.get(i).getName());
 			for (int j = 0; j < this.userList.get(i).getEvents().size(); j++)	{
-				System.out.println(('a' + j) + ". " + this.userList.get(i).getEvents().get(j));
+				System.out.println("\t" + ((char) ('a' + j)) + ". " + this.userList.get(i).getEvents().get(j));
 			}
 		}
 	}
