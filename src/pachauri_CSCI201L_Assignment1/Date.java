@@ -52,6 +52,11 @@ public class Date {
 	public void setYear(Integer year) {
 		this.year = year;
 	}
-    
-
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return (month + " " + day + ", " + year);
+	}
 }
