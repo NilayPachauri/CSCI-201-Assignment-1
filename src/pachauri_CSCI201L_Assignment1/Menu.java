@@ -239,7 +239,7 @@ public class Menu {
 		} while (!check);
 		
 		Event e = new Event(title, time, date);
-		this.userList.get(option).getEvents().add(e);
+		this.userList.get(option - 1).getEvents().add(e);
 	}
 
 	/**
