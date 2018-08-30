@@ -3,6 +3,7 @@
  */
 package pachauri_CSCI201L_Assignment1;
 
+import java.time.DateTimeException;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -189,9 +190,7 @@ public class Menu {
 		
 		String title;
 		String time;
-		int month = 0;
-		int day = 0;
-		int year = 0;
+		Date date = null;
 		
 		System.out.println();
 		System.out.print("What is the title of the event? ");
@@ -206,6 +205,7 @@ public class Menu {
 				if ((time.indexOf("am") != -1) || (time.indexOf("pm") != -1))	{
 					int hour = Integer.parseInt(time.split(":")[0]);
 					int min = Integer.parseInt(time.split(":")[1].split(" ")[0]);
+					check = true;
 				} else	{
 					throw new Exception();
 				}
@@ -219,42 +219,26 @@ public class Menu {
 			try {
 				System.out.println();
 				System.out.print("What month? ");
-				month = scan.nextInt();
-				check = true;
-			} catch (InputMismatchException ime) {
-				// TODO Auto-generated catch block
-				System.out.println("That is not a valid option");
-				check = false;
-			}
-		} while (!check);
-
-		do {
-			try {
+				int month = scan.nextInt();
+				
 				System.out.println();
 				System.out.print("What day? ");
-				day = scan.nextInt();
-				check = true;
-			} catch (InputMismatchException ime) {
-				// TODO Auto-generated catch block
-				System.out.println("That is not a valid option");
-				check = false;
-			}
-		} while (!check);
-
-		do {
-			try {
+				int day = scan.nextInt();
+				
 				System.out.println();
 				System.out.print("What year? ");
-				year = scan.nextInt();
+				int year = scan.nextInt();
+				
+				date = new Date(Month.of(month).name(), day, year);
 				check = true;
-			} catch (InputMismatchException ime) {
+			} catch (InputMismatchException | DateTimeException e) {
 				// TODO Auto-generated catch block
 				System.out.println("That is not a valid option");
 				check = false;
 			}
 		} while (!check);
 		
-		Event e = new Event(title, time, new Date(Month.of(month).name(), day, year));
+		Event e = new Event(title, time, date);
 		this.userList.get(option).getEvents().add(e);
 	}
 
