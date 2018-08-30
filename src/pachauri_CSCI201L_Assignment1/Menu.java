@@ -273,6 +273,6 @@ public class Menu {
 	 */
 	private void exit() {
 		// TODO Auto-generated method stub
-		
+		return;
 	}
 }
