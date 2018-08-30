@@ -185,28 +185,77 @@ public class Menu {
 			option = checkOption(this.userList.size());
 		
 		Scanner scan = new Scanner(System.in);
+		boolean check = false;
+		
+		String title;
+		String time;
+		int month = 0;
+		int day = 0;
+		int year = 0;
 		
 		System.out.println();
 		System.out.print("What is the title of the event? ");
-		String title = scan.nextLine();
+		title = scan.nextLine();
 		
-		System.out.println();
-		System.out.print("What time is the event? ");
-		String time = scan.nextLine();
+		do {
+			System.out.println();
+			System.out.print("What time is the event? ");
+			time = scan.nextLine();
+			
+			try	{
+				if ((time.indexOf("am") != -1) || (time.indexOf("pm") != -1))	{
+					int hour = Integer.parseInt(time.split(":")[0]);
+					int min = Integer.parseInt(time.split(":")[1].split(" ")[0]);
+				} else	{
+					throw new Exception();
+				}
+			} catch (Exception e)	{
+				System.out.println("That is not a valid option");
+				check = false;
+			}				
+		} while (!check);
 
-		System.out.println();
-		System.out.print("What month? ");
-		int month = scan.nextInt();
+		do {
+			try {
+				System.out.println();
+				System.out.print("What month? ");
+				month = scan.nextInt();
+				check = true;
+			} catch (InputMismatchException ime) {
+				// TODO Auto-generated catch block
+				System.out.println("That is not a valid option");
+				check = false;
+			}
+		} while (!check);
 
-		System.out.println();
-		System.out.print("What day? ");
-		int day = scan.nextInt();
+		do {
+			try {
+				System.out.println();
+				System.out.print("What day? ");
+				day = scan.nextInt();
+				check = true;
+			} catch (InputMismatchException ime) {
+				// TODO Auto-generated catch block
+				System.out.println("That is not a valid option");
+				check = false;
+			}
+		} while (!check);
 
-		System.out.println();
-		System.out.print("What year? ");
-		int year = scan.nextInt();
+		do {
+			try {
+				System.out.println();
+				System.out.print("What year? ");
+				year = scan.nextInt();
+				check = true;
+			} catch (InputMismatchException ime) {
+				// TODO Auto-generated catch block
+				System.out.println("That is not a valid option");
+				check = false;
+			}
+		} while (!check);
 		
 		Event e = new Event(title, time, new Date(Month.of(month).name(), day, year));
+		this.userList.get(option).getEvents().add(e);
 	}
 
 	/**
