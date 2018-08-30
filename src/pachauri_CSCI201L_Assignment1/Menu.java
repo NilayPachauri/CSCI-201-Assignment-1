@@ -229,7 +229,9 @@ public class Menu {
 				System.out.print("What year? ");
 				int year = scan.nextInt();
 				
-				date = new Date(Month.of(month).name(), day, year);
+				String monthString = Month.of(month).toString();
+				
+				date = new Date(monthString.charAt(0) + monthString.substring(1).toLowerCase(), day, year);
 				check = true;
 			} catch (InputMismatchException | DateTimeException e) {
 				// TODO Auto-generated catch block
