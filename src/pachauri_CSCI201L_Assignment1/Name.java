@@ -14,6 +14,14 @@ public class Name {
     @SerializedName("Lname")
     private String lname;
 	/**
+	 * @param fname
+	 * @param lname
+	 */
+	public Name(String fname, String lname) {
+		this.fname = fname;
+		this.lname = lname;
+	}
+	/**
 	 * @return the fname
 	 */
 	public String getFname() {
