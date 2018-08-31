@@ -165,8 +165,22 @@ public class Menu {
 		Scanner scan = new Scanner(System.in);
 		String nameString = scan.nextLine();
 		
-		Name name = new Name(nameString.split(" ")[0], nameString.split(":")[1]);
-		this.userList.add(new User(name, new ArrayList<Event>()));
+		String fname = nameString.split(" ")[0];
+		String lname = nameString.split(" ")[1];
+		String remainder = nameString.split(" ")[2];
+		
+		boolean check = false;
+		
+		do {
+			if (!fname.isEmpty() && !lname.isEmpty() && remainder.isEmpty())	{
+				Name name = new Name(nameString.split(" ")[0], nameString.split(" ")[1]);
+				this.userList.add(new User(name, new ArrayList<Event>()));
+				check = true;
+			} else	{
+				System.out.println("That is not a valid option");
+				check = false;
+			}
+		} while (!check);
 	}
 
 	/**
