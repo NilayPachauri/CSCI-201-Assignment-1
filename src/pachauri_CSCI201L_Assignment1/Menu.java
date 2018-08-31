@@ -3,6 +3,8 @@
  */
 package pachauri_CSCI201L_Assignment1;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -155,11 +157,16 @@ public class Menu {
 	}
 
 	/**
-	 *
+	 * Add a user to the Calendar
 	 */
 	private void addUser() {
 		// TODO Auto-generated method stub
+		System.out.println("What is the user's name? ");
+		Scanner scan = new Scanner(System.in);
+		String nameString = scan.nextLine();
 		
+		Name name = new Name(nameString.split(" ")[0], nameString.split(":")[1]);
+		this.userList.add(new User(name, new ArrayList<Event>()));
 	}
 
 	/**
