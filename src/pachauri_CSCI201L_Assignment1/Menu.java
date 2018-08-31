@@ -166,6 +166,7 @@ public class Menu {
 		boolean check = false;
 		
 		do {
+			System.out.println();
 			System.out.print("What is the user's name? ");
 			String nameString = scan.nextLine();
 			try	{
@@ -177,14 +178,14 @@ public class Menu {
 				
 				check = true;
 			}	catch (ArrayIndexOutOfBoundsException aioobe)	{
-				System.out.println("That is not a valid option");
+				System.out.println("Invalid, must have a first and last name.");
 				check = false;
 			}
 		} while (!check);
 	}
 
 	/**
-	 * 
+	 * Remove a user from the Calendar
 	 */
 	private void removeUser() {
 		// TODO Auto-generated method stub
