@@ -14,6 +14,22 @@ public class User {
     private Name name;
     @SerializedName("Events")
     private List<Event> events = null;
+    /**
+     * User Constructor with No Parameters
+     */
+    public User()	{
+    	
+    }
+	/**
+	 * User Constructor with Parameters
+	 * @param name
+	 * @param events
+	 */
+	public User(Name name, List<Event> events) {
+		super();
+		this.name = name;
+		this.events = events;
+	}
 	/**
 	 * @return the name
 	 */
