@@ -191,15 +191,12 @@ public class Menu {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 	/**
-	 * Add an event to the Calendar under an existing User
+	 * Helper method to access the list of users to see their events
+	 * @return the user selected to modify the events
 	 */
-	private void addEvent() {
-		// TODO Auto-generated method stub
-		
-		System.out.println();
-		
+	private int eventHelper()	{
 		for (int i = 0; i < this.userList.size(); i++)
 			System.out.println((i + 1) + ") " + this.userList.get(i).getName());
 		
@@ -209,6 +206,19 @@ public class Menu {
 		int option = 0;
 		while (option == 0)
 			option = checkOption(this.userList.size());
+		
+		return option;
+	}
+	
+	/**
+	 * Add an event to the Calendar under an existing User
+	 */
+	private void addEvent() {
+		// TODO Auto-generated method stub
+		
+		System.out.println();
+		
+		int option = eventHelper();
 		
 		Scanner scan = new Scanner(System.in);
 		boolean check = false;
@@ -271,6 +281,19 @@ public class Menu {
 	 */
 	private void deleteEvent() {
 		// TODO Auto-generated method stub
+		
+		System.out.println();
+		
+		int option = eventHelper();
+		int size = this.userList.get(option - 1).getEvents().size();
+		
+		if (size > 0)	{
+			for (int i = 0; i < size; i++)
+				System.out.println((i + 1) + ") " + this.userList.get(i).getEvents().get(i));
+		} else	{
+			System.out.println();
+			System.out.println("Calendar is empty.");
+		}
 		
 	}
 
