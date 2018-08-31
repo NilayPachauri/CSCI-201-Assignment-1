@@ -13,7 +13,14 @@ public class Name {
     private String fname;
     @SerializedName("Lname")
     private String lname;
+    /**
+     * Name Constructor with No Parameter
+     */
+    public Name()	{
+    	
+    }
 	/**
+	 * Name Constructor with Parameters
 	 * @param fname
 	 * @param lname
 	 */
