@@ -3,6 +3,9 @@
  */
 package pachauri_CSCI201L_Assignment1;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.DateTimeException;
 import java.time.Month;
 import java.util.ArrayList;
@@ -201,18 +204,15 @@ public class Menu {
 			System.out.print("What time is the event? ");
 			time = scan.nextLine();
 			
-			try	{
-				if ((time.indexOf("am") != -1) || (time.indexOf("pm") != -1))	{
-					int hour = Integer.parseInt(time.split(":")[0]);
-					int min = Integer.parseInt(time.split(":")[1].split(" ")[0]);
-					check = true;
-				} else	{
-					throw new Exception();
-				}
-			} catch (Exception e)	{
+			DateFormat sdf = new SimpleDateFormat("hh:mm a");
+			try {
+				sdf.parse(time);
+				check = true;
+			} catch (ParseException pe) {
+				// Catch invalidly formatted date String
 				System.out.println("That is not a valid option");
 				check = false;
-			}				
+			}		
 		} while (!check);
 
 		do {
