@@ -174,8 +174,12 @@ public class Menu {
 				
 				Name name = new Name(nameString.split(" ")[0], nameString.split(" ")[1]);
 				
-				if (toAdd)
-					this.userList.add(new User(name, new ArrayList<Event>()));
+				if (toAdd)	{
+					if (this.containsName(this.userList, name))
+						throw new ArrayStoreException();
+					else
+						this.userList.add(new User(name, new ArrayList<Event>()));					
+				}
 				else
 					this.userList.removeIf((User user) -> user.getName().equals(name));
 				
@@ -183,10 +187,25 @@ public class Menu {
 			}	catch (ArrayIndexOutOfBoundsException aioobe)	{
 				System.out.println("Invalid, must have a first and last name.");
 				check = false;
+			}	catch (ArrayStoreException ase)	{
+				System.out.println("Invalid, this user already exists.");
+				check = false;
 			}
 		} while (!check);
 	}
 	
+	/**
+	 * @param list User List to search for duplicate name
+	 * @param name Name to find duplicate of in list
+	 * @return whether a duplicate was found in the list
+	 */
+	private boolean containsName(ArrayList<User> list, Name name) {
+		for (User u : list)
+			if (u.getName().equals(name))
+				return true;
+		return false;
+	}
+
 	/**
 	 * Add a user to the Calendar
 	 */
@@ -203,14 +222,18 @@ public class Menu {
 	
 	/**
 	 * Helper method to access the list of users to see their events
+	 * @param toAdd
 	 * @return the user selected to modify the events
 	 */
-	private int eventHelper()	{
+	private int eventHelper(boolean toAdd)	{
 		for (int i = 0; i < this.userList.size(); i++)
 			System.out.println((i + 1) + ") " + this.userList.get(i).getName());
 		
 		System.out.println();
-		System.out.println("To which user would you like to add an event?");
+		if (toAdd)
+			System.out.println("To which user would you like to add an event?");
+		else
+			System.out.println("To which user would you like to delete an event?");
 		
 		int option = 0;
 		while (option == 0)
@@ -227,7 +250,7 @@ public class Menu {
 		
 		System.out.println();
 		
-		int option = eventHelper();
+		int option = eventHelper(true);
 		
 		boolean check = false;
 		
@@ -281,24 +304,36 @@ public class Menu {
 		} while (!check);
 		
 		Event e = new Event(title, time, date);
+		
+		System.out.println();
+		System.out.println("Added: " + e.toString() + " to " + this.userList.get(option - 1).getName().getFname() + " " + this.userList.get(option - 1).getName().getLname() + "'s calendar.");
+		
 		this.userList.get(option - 1).getEvents().add(e);
 		Collections.sort(this.userList.get(option - 1).getEvents());
 	}
 
 	/**
-	 * 
+	 * Delete an Event from the Calendar under an existing User
 	 */
 	private void deleteEvent() {
-		// TODO Auto-generated method stub
 		
 		System.out.println();
 		
-		int option = eventHelper();
+		int option = eventHelper(false);
 		int size = this.userList.get(option - 1).getEvents().size();
 		
 		if (size > 0)	{
 			for (int i = 0; i < size; i++)
-				System.out.println((i + 1) + ") " + this.userList.get(i).getEvents().get(i));
+				System.out.println((i + 1) + ") " + this.userList.get(option - 1).getEvents().get(i));
+			
+			System.out.println();
+			System.out.print("Which event would you like to delete? ");
+			int evOption = checkOption(size);
+			
+			System.out.println();
+			System.out.println(this.userList.get(option - 1).getEvents().get(evOption - 1).getTitle() + " has been deleted");
+			
+			this.userList.get(option - 1).getEvents().remove(evOption - 1);
 		} else	{
 			System.out.println();
 			System.out.println("Calendar is empty.");
@@ -307,11 +342,10 @@ public class Menu {
 	}
 
 	/**
-	 * 
+	 * Sorts the users in alphabetical order
 	 */
 	private void sortUsers() {
-		// TODO Auto-generated method stub
-		
+		Collections.sort(this.userList);
 	}
 
 	/**
