@@ -457,12 +457,10 @@ public class Menu {
 			System.out.print("Would you like to save the file before exiting? ");
 			int option = this.checkOption(2);
 			
-			System.out.println();
-			
 			if (option == 1)
 				this.writeFile();
 			else
-				System.out.println("File was not saved");
+				System.out.println("\nFile was not saved");
 			
 			System.out.println();
 			System.out.println("Thank you for using my program!");
