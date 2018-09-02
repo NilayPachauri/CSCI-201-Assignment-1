@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.time.DateTimeException;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -272,7 +273,7 @@ public class Menu {
 		
 		Event e = new Event(title, time, date);
 		this.userList.get(option - 1).getEvents().add(e);
-		this.userList.get(option - 1).getEvents().sort(new EventComparator());
+		Collections.sort(this.userList.get(option - 1).getEvents());
 	}
 
 	/**

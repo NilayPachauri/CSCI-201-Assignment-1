@@ -1,13 +1,16 @@
 
 package pachauri_CSCI201L_Assignment1;
 
+import java.time.Month;
+import java.util.Comparator;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
  * @author Nilay Pachauri
  *
  */
-public class Event  {
+public class Event implements Comparable<Event> {
 
     @SerializedName("Title")
     private String title;
@@ -76,6 +79,19 @@ public class Event  {
 	@Override
 	public String toString() {
 		return (title + ", " + time + ", " + date);
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo(Event e) {
+		if (this.getDate().getYear().equals(e.getDate().getYear()))
+			if (Month.valueOf(this.getDate().getMonth().toUpperCase()).equals(Month.valueOf(e.getDate().getMonth().toUpperCase())))
+				return this.getDate().getDay().compareTo(e.getDate().getDay());
+			else
+				return Month.valueOf(this.getDate().getMonth().toUpperCase()).compareTo(Month.valueOf(e.getDate().getMonth().toUpperCase()));
+		else
+			return this.getDate().getYear().compareTo(e.getDate().getYear());
 	}
 
     
