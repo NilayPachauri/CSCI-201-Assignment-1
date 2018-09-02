@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
  * @author Nilay Pachauri
  *
  */
-public class User {
+public class User implements Comparable<User>{
 
     @SerializedName("Name")
     private Name name;
@@ -53,5 +53,15 @@ public class User {
 	 */
 	public void setEvents(List<Event> events) {
 		this.events = events;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo(User u) {
+		if (this.getName().getLname().equalsIgnoreCase(u.getName().getLname()))
+			return this.getName().getFname().compareToIgnoreCase(u.getName().getFname());
+		else
+			return this.getName().getLname().compareToIgnoreCase(u.getName().getLname());
 	}
 }
