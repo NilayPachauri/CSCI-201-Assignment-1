@@ -4,6 +4,7 @@
 package pachauri_CSCI201L_Assignment1;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -393,7 +394,11 @@ public class Menu {
 	private void writeFile() {
 		Gson gson = new Gson();
 		try {
-			gson.toJson(this.cal, new FileWriter(this.fileName));
+			String output = gson.toJson(this.cal);
+			BufferedWriter bw = new BufferedWriter(new FileWriter(this.fileName));
+			bw.write(output);
+			bw.flush();
+			bw.close();
 		} catch (JsonIOException | IOException e) {
 			e.printStackTrace();
 		}
