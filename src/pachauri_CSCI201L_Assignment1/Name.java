@@ -58,7 +58,7 @@ public class Name {
 	 * @return the equality between all the parameter fields of the two names
 	 */
 	public boolean equals(Name name) {
-		return this.getFname().equals(name.getFname()) && this.getLname().equals(name.getLname());
+		return this.getFname().equalsIgnoreCase(name.getFname()) && this.getLname().equalsIgnoreCase(name.getLname());
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
