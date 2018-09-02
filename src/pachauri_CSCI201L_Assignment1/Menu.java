@@ -20,6 +20,7 @@ import java.util.Scanner;
 public class Menu {
 
 	private ArrayList<User> userList = null;
+	private Scanner s;
 	
 	/*
 	 * Constructor for the Menu
@@ -27,6 +28,7 @@ public class Menu {
 	public Menu(Calendar cal)	{
 		
 		this.userList = (ArrayList<User>) cal.getUsers();
+		s = new Scanner(System.in);
 	}
 	
 	/**
@@ -35,11 +37,11 @@ public class Menu {
 	 * @return A valid option the user selects
 	 */
 	private int checkOption(int num)	{
-		Scanner s = new Scanner(System.in);
 		int option = 0;
 		
 		try	{
 			option = s.nextInt();
+			s.nextLine(); // Removes the remaining characters in input
 			if ((option < 1) || (option > num))
 				throw new InputMismatchException();
 		} catch	(InputMismatchException ime){
@@ -146,7 +148,7 @@ public class Menu {
 	 * Displays the User's Calendar from the JSON file
 	 */
 	private void displayUsersCalendar() {
-		// TODO Auto-generated method stub
+		System.out.println();
 		for (int i = 0; i < this.userList.size(); i++)	{
 			System.out.println((i + 1) + ") " + this.userList.get(i).getName());
 			for (int j = 0; j < this.userList.get(i).getEvents().size(); j++)	{
@@ -159,16 +161,13 @@ public class Menu {
 	 * Helper method which adds or deletes the user depending on the parameter
 	 * @param toAdd adds the user to the list if true, deletes user if false
 	 */
-	private void userHelper(boolean toAdd)	{
-
-		Scanner scan = new Scanner(System.in);
-		
+	private void userHelper(boolean toAdd)	{		
 		boolean check = false;
 		
 		do {
 			System.out.println();
 			System.out.print("What is the user's name? ");
-			String nameString = scan.nextLine();
+			String nameString = s.nextLine();
 			try	{
 				if (nameString.split(" ").length != 2)
 					throw new ArrayIndexOutOfBoundsException();
@@ -186,8 +185,6 @@ public class Menu {
 				check = false;
 			}
 		} while (!check);
-		
-		scan.close();
 	}
 	
 	/**
@@ -232,7 +229,6 @@ public class Menu {
 		
 		int option = eventHelper();
 		
-		Scanner scan = new Scanner(System.in);
 		boolean check = false;
 		
 		String title;
@@ -241,12 +237,12 @@ public class Menu {
 		
 		System.out.println();
 		System.out.print("What is the title of the event? ");
-		title = scan.nextLine();
+		title = s.nextLine();
 		
 		do {
 			System.out.println();
 			System.out.print("What time is the event? ");
-			time = scan.nextLine();
+			time = s.nextLine();
 			
 			DateFormat sdf = new SimpleDateFormat("hh:mm a");
 			try {
@@ -263,15 +259,15 @@ public class Menu {
 			try {
 				System.out.println();
 				System.out.print("What month? ");
-				int month = scan.nextInt();
+				int month = s.nextInt();
 				
 				System.out.println();
 				System.out.print("What day? ");
-				int day = scan.nextInt();
+				int day = s.nextInt();
 				
 				System.out.println();
 				System.out.print("What year? ");
-				int year = scan.nextInt();
+				int year = s.nextInt();
 				
 				String monthString = Month.of(month).toString();
 				
