@@ -41,8 +41,8 @@ public class Menu {
 	 */
 	public Menu()	{
 		this.parseJSON();
-		this.initEventSort();
 		this.userList = (ArrayList<User>) cal.getUsers();
+		this.initEventSort();
 		s = new Scanner(System.in);
 	}
 	
@@ -470,10 +470,9 @@ public class Menu {
 			if (option == 1)
 				this.writeFile();
 			else
-				System.out.println("\nFile was not saved");
+				System.out.println("\nFile was not saved\n");
 		}
 		
-		System.out.println();
 		System.out.println("Thank you for using my program!");
 		
 		s.close();
