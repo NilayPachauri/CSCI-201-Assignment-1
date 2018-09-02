@@ -271,14 +271,15 @@ public class Menu {
 			System.out.println("\t" + (i + 1) + ") " + this.userList.get(i).getName());
 		
 		System.out.println();
-		if (user)
+		if (user)	{
 			if (!toAdd)
 				System.out.print("Which user would you like to delete? ");
-		else
+		}	else	{
 			if (toAdd)
 				System.out.print("To which user would you like to add an event? ");
 			else
 				System.out.print("From which user would you like to delete an event? ");
+		}
 		
 		int option = 0;
 		while (option == 0)
@@ -375,6 +376,8 @@ public class Menu {
 			
 			System.out.println();
 			System.out.print("Which event would you like to delete? ");
+			
+			System.out.println();
 			int evOption = this.checkOption(size);
 			
 			System.out.println();
@@ -421,6 +424,8 @@ public class Menu {
 	private void writeFile() {
 		Gson gson = new Gson();
 		
+		System.out.println();
+		
 		try {
 			String output = gson.toJson(this.cal);
 			BufferedWriter bw = new BufferedWriter(new FileWriter(this.fileName));
@@ -429,9 +434,11 @@ public class Menu {
 			bw.flush();
 			bw.close();
 			
+			System.out.println("File has been saved.");
+			
 			this.fileChanged = false;
 		} catch (JsonIOException | IOException e) {
-			e.printStackTrace();
+			System.out.println("File has encountered an error saving.");
 		}
 	}
 
@@ -452,15 +459,13 @@ public class Menu {
 			
 			System.out.println();
 			
-			if (option == 1)	{
+			if (option == 1)
 				this.writeFile();
-				System.out.println("File was saved.");
-			} else	{
+			else
 				System.out.println("File was not saved");
-			}
 			
 			System.out.println();
-			System.out.println("Thank you for using my program");
+			System.out.println("Thank you for using my program!");
 		}
 			
 		return;
