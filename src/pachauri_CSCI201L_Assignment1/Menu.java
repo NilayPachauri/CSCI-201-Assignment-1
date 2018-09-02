@@ -20,6 +20,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
@@ -40,6 +41,7 @@ public class Menu {
 	 */
 	public Menu()	{
 		this.parseJSON();
+		this.initEventSort();
 		this.userList = (ArrayList<User>) cal.getUsers();
 		s = new Scanner(System.in);
 	}
@@ -70,6 +72,14 @@ public class Menu {
 		}
 		
 		return cal;
+	}
+	
+	/**
+	 * Sorts all the events read in from the file chronologically
+	 */
+	private void initEventSort()	{
+		for (int i = 0; i < this.userList.size(); i ++)
+			Collections.sort(this.userList.get(i).getEvents());	
 	}
 	
 	/**
@@ -319,7 +329,7 @@ public class Menu {
 				check = true;
 			} catch (ParseException pe) {
 				// Catch invalidly formatted date String
-				System.out.println("That is not a valid option");
+				System.out.println("That is not a valid time");
 				check = false;
 			}		
 		} while (!check);
@@ -344,7 +354,7 @@ public class Menu {
 				check = true;
 			} catch (InputMismatchException | DateTimeException e) {
 				// TODO Auto-generated catch block
-				System.out.println("That is not a valid option");
+				System.out.println("That is not a valid date");
 				check = false;
 			}
 		} while (!check);
@@ -422,7 +432,7 @@ public class Menu {
 	 * Writes the updated calendar to the original file opened
 	 */
 	private void writeFile() {
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 		
 		System.out.println();
 		
@@ -461,11 +471,11 @@ public class Menu {
 				this.writeFile();
 			else
 				System.out.println("\nFile was not saved");
-			
-			System.out.println();
-			System.out.println("Thank you for using my program!");
 		}
-			
-		return;
+		
+		System.out.println();
+		System.out.println("Thank you for using my program!");
+		
+		s.close();
 	}
 }
