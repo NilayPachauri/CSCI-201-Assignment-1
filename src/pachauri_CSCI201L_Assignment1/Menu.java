@@ -281,6 +281,8 @@ public class Menu {
 		System.out.println();
 		
 		int option = userEventHelper(true, false);
+		
+		System.out.println();
 		System.out.println(this.userList.get(option - 1).getName().getFname() + " " + this.userList.get(option - 1).getName().getLname() + " has been deleted.");
 		
 		this.userList.remove(option - 1);
@@ -416,7 +418,24 @@ public class Menu {
 	 * Sorts the users in alphabetical order
 	 */
 	private void sortUsers() {
-		Collections.sort(this.userList);
+		System.out.println();
+		
+		System.out.println("1) Ascending (A-Z)");
+		System.out.println("2) Descending (Z-A)"); 
+		
+		System.out.println();
+		
+		System.out.print("How would you like to sort? ");
+		int option = checkOption(2);
+		
+		if (option == 1)
+			Collections.sort(this.userList);
+		else
+			Collections.sort(this.userList, Collections.reverseOrder());
+		
+		System.out.println();
+		for (int i = 0; i < this.userList.size(); i++)
+			System.out.println((i + 1) + ") " + this.userList.get(i).toString());
 	}
 
 	/**
