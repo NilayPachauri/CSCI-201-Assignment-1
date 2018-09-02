@@ -156,10 +156,11 @@ public class Menu {
 	}
 
 	/**
-	 * Add a user to the Calendar
+	 * Helper method which adds or deletes the user depending on the parameter
+	 * @param toAdd adds the user to the list if true, deletes user if false
 	 */
-	private void addUser() {
-		// TODO Auto-generated method stub
+	private void userHelper(boolean toAdd)	{
+
 		Scanner scan = new Scanner(System.in);
 		
 		boolean check = false;
@@ -173,7 +174,11 @@ public class Menu {
 					throw new ArrayIndexOutOfBoundsException();
 				
 				Name name = new Name(nameString.split(" ")[0], nameString.split(" ")[1]);
-				this.userList.add(new User(name, new ArrayList<Event>()));
+				
+				if (toAdd)
+					this.userList.add(new User(name, new ArrayList<Event>()));
+				else
+					this.userList.removeIf((User user) -> user.getName().equals(name));
 				
 				check = true;
 			}	catch (ArrayIndexOutOfBoundsException aioobe)	{
@@ -181,14 +186,22 @@ public class Menu {
 				check = false;
 			}
 		} while (!check);
+		
+		scan.close();
+	}
+	
+	/**
+	 * Add a user to the Calendar
+	 */
+	private void addUser() {
+		this.userHelper(true);
 	}
 
 	/**
 	 * Remove a user from the Calendar
 	 */
 	private void removeUser() {
-		// TODO Auto-generated method stub
-		
+		this.userHelper(false);
 	}
 	
 	/**
