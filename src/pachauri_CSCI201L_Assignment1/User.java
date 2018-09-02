@@ -54,7 +54,4 @@ public class User {
 	public void setEvents(List<Event> events) {
 		this.events = events;
 	}
-
-    
-
 }

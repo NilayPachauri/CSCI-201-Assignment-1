@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * @author Nilay Pachauri
  *
  */
-public class Event {
+public class Event  {
 
     @SerializedName("Title")
     private String title;
