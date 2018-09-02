@@ -3,8 +3,6 @@
  */
 package pachauri_CSCI201L_Assignment1;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -274,6 +272,7 @@ public class Menu {
 		
 		Event e = new Event(title, time, date);
 		this.userList.get(option - 1).getEvents().add(e);
+		this.userList.get(option - 1).getEvents().sort(new EventComparator());
 	}
 
 	/**
