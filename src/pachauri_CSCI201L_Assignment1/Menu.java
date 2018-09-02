@@ -435,7 +435,7 @@ public class Menu {
 		
 		System.out.println();
 		for (int i = 0; i < this.userList.size(); i++)
-			System.out.println((i + 1) + ") " + this.userList.get(i).toString());
+			System.out.println((i + 1) + ") " + this.userList.get(i).getName());
 	}
 
 	/**
