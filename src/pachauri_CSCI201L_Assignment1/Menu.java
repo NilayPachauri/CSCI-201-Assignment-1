@@ -3,6 +3,10 @@
  */
 package pachauri_CSCI201L_Assignment1;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,22 +17,54 @@ import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+
 /**
  * @author Nilay Pachauri
  *
  */
 public class Menu {
 
+	private Calendar cal = null;
 	private ArrayList<User> userList = null;
 	private Scanner s;
 	
-	/*
+	/**
 	 * Constructor for the Menu
 	 */
-	public Menu(Calendar cal)	{
-		
+	public Menu()	{
+		this.cal = this.parseJSON();
 		this.userList = (ArrayList<User>) cal.getUsers();
 		s = new Scanner(System.in);
+	}
+	
+	/**
+	 * Parses JSON from a designated file in the specified format
+	 * @return the Calendar object initialised from the JSON file
+	 */
+	private Calendar parseJSON()	{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		Gson gson = new Gson();
+		boolean isJSON = false;
+		
+		while (!isJSON) {
+			System.out.print("What is the name of the input file? ");
+			
+			try {
+				String inputFileName = br.readLine();
+				cal = gson.fromJson(new BufferedReader(new FileReader(inputFileName)), Calendar.class);
+				isJSON = true;
+				
+			} catch (JsonSyntaxException jse) {
+				System.out.println("That file is not a well-formed JSON file.");
+				
+			} catch (IOException ioe) {
+				System.out.println("That file could not be found.");
+			}
+		}
+		
+		return cal;
 	}
 	
 	/**
@@ -349,7 +385,7 @@ public class Menu {
 	}
 
 	/**
-	 * 
+	 * Writes the updated calendar to the original file opened
 	 */
 	private void writeFile() {
 		// TODO Auto-generated method stub

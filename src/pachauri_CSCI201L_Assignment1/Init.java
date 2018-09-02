@@ -21,7 +21,7 @@ public class Init {
 	
 	private Calendar cal = null;
 
-	/*
+	/**
 	 * Constructor to Initialise Calendar Data and Prompt for option
 	 */
 	public Init()	{
@@ -29,8 +29,9 @@ public class Init {
 		this.cal = parseJSON();
 	}
 	
-	/*
+	/**
 	 * Parses JSON from a designated file in the specified format
+	 * @return the Calendar object initialised from the JSON file
 	 */
 	private Calendar parseJSON()	{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -56,8 +57,9 @@ public class Init {
 		return cal;
 	}
 	
-	/*
+	/**
 	 * Getter Method for the Calendar
+	 * @return the Calendar object initalised from the JSON file
 	 */
 	public Calendar getCalendar()	{
 		return this.cal;

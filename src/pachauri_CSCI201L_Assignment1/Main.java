@@ -15,8 +15,7 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Init init = new Init();
-		Menu menu = new Menu(init.getCalendar());
+		Menu menu = new Menu();
 		int option = 0;
 		
 		do	{
