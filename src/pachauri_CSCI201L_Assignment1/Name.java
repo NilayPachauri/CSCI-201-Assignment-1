@@ -52,6 +52,14 @@ public class Name {
 	public void setLname(String lname) {
 		this.lname = lname;
 	}
+	/**
+	 * Checks the equality between two name objects
+	 * @param name Name object to compare
+	 * @return the equality between all the parameter fields of the two names
+	 */
+	public boolean equals(Name name) {
+		return this.getFname().equals(name.getFname()) && this.getLname().equals(name.getLname());
+	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
