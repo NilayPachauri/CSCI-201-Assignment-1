@@ -5,6 +5,7 @@ package pachauri_CSCI201L_Assignment1;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.DateFormat;
@@ -18,6 +19,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
 /**
@@ -28,13 +30,14 @@ public class Menu {
 
 	private Calendar cal = null;
 	private ArrayList<User> userList = null;
-	private Scanner s;
+	private Scanner s = null;
+	private String fileName = null;
 	
 	/**
 	 * Constructor for the Menu
 	 */
 	public Menu()	{
-		this.cal = this.parseJSON();
+		this.parseJSON();
 		this.userList = (ArrayList<User>) cal.getUsers();
 		s = new Scanner(System.in);
 	}
@@ -52,8 +55,8 @@ public class Menu {
 			System.out.print("What is the name of the input file? ");
 			
 			try {
-				String inputFileName = br.readLine();
-				cal = gson.fromJson(new BufferedReader(new FileReader(inputFileName)), Calendar.class);
+				this.fileName = br.readLine();
+				cal = gson.fromJson(new BufferedReader(new FileReader(this.fileName)), Calendar.class);
 				isJSON = true;
 				
 			} catch (JsonSyntaxException jse) {
@@ -388,8 +391,12 @@ public class Menu {
 	 * Writes the updated calendar to the original file opened
 	 */
 	private void writeFile() {
-		// TODO Auto-generated method stub
-		
+		Gson gson = new Gson();
+		try {
+			gson.toJson(this.cal, new FileWriter(this.fileName));
+		} catch (JsonIOException | IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
