@@ -33,6 +33,7 @@ public class Menu {
 	private ArrayList<User> userList = null;
 	private Scanner s = null;
 	private String fileName = null;
+	private boolean fileChanged = false;
 	
 	/**
 	 * Constructor for the Menu
@@ -72,7 +73,7 @@ public class Menu {
 	}
 	
 	/**
-	 * 
+	 * Checks if the users input is between the valid options
 	 * @param num The number of the last available option
 	 * @return A valid option the user selects
 	 */
@@ -106,18 +107,18 @@ public class Menu {
 	 */
 	private int getOptionHelper()	{
 		System.out.println();
-		System.out.println("\t 1) Display User's Calendar");
-		System.out.println("\t 2) Add User");
-		System.out.println("\t 3) Remove User");
-		System.out.println("\t 4) Add Event");
-		System.out.println("\t 5) Delete Event");
-		System.out.println("\t 6) Sort Users");
-		System.out.println("\t 7) Write File");
-		System.out.println("\t 8) Exit");
+		System.out.println("\t1) Display User's Calendar");
+		System.out.println("\t2) Add User");
+		System.out.println("\t3) Remove User");
+		System.out.println("\t4) Add Event");
+		System.out.println("\t5) Delete Event");
+		System.out.println("\t6) Sort Users");
+		System.out.println("\t7) Write File");
+		System.out.println("\t8) Exit");
 		System.out.println();
 		System.out.print("What would you like to do? ");
 		
-		return checkOption(8);
+		return this.checkOption(8);
 	}
 
 	/*
@@ -190,44 +191,11 @@ public class Menu {
 	private void displayUsersCalendar() {
 		System.out.println();
 		for (int i = 0; i < this.userList.size(); i++)	{
-			System.out.println((i + 1) + ") " + this.userList.get(i).getName());
+			System.out.println("\t" + (i + 1) + ") " + this.userList.get(i).getName());
 			for (int j = 0; j < this.userList.get(i).getEvents().size(); j++)	{
-				System.out.println("\t" + ((char) ('a' + j)) + ". " + this.userList.get(i).getEvents().get(j));
+				System.out.println("\t\t" + ((char) ('a' + j)) + ". " + this.userList.get(i).getEvents().get(j));
 			}
 		}
-	}
-
-	/**
-	 * Helper method which adds or deletes the user depending on the parameter
-	 * @param toAdd adds the user to the list if true, deletes user if false
-	 */
-	private void userHelper()	{		
-		boolean check = false;
-		
-		do {
-			System.out.println();
-			System.out.print("What is the user's name? ");
-			String nameString = s.nextLine();
-			try	{
-				if (nameString.indexOf(' ') == -1)
-					throw new ArrayIndexOutOfBoundsException();
-				
-				Name name = new Name(nameString.substring(0, nameString.indexOf(' ')), nameString.substring(nameString.indexOf(' ') + 1));
-				
-				if (this.containsName(this.userList, name))
-					throw new ArrayStoreException();
-				else
-					this.userList.add(new User(name, new ArrayList<Event>()));	
-				
-				check = true;
-			}	catch (ArrayIndexOutOfBoundsException aioobe)	{
-				System.out.println("Invalid, must have a first and last name.");
-				check = false;
-			}	catch (ArrayStoreException ase)	{
-				System.out.println("Invalid, this user already exists.");
-				check = false;
-			}
-		} while (!check);
 	}
 	
 	/**
@@ -272,6 +240,8 @@ public class Menu {
 				check = false;
 			}
 		} while (!check);
+		
+		this.fileChanged = true;
 	}
 
 	/**
@@ -286,6 +256,8 @@ public class Menu {
 		System.out.println(this.userList.get(option - 1).getName().getFname() + " " + this.userList.get(option - 1).getName().getLname() + " has been deleted.");
 		
 		this.userList.remove(option - 1);
+		
+		this.fileChanged = true;
 	}
 	
 	/**
@@ -296,7 +268,7 @@ public class Menu {
 	 */
 	private int userEventHelper(boolean user, boolean toAdd)	{
 		for (int i = 0; i < this.userList.size(); i++)
-			System.out.println((i + 1) + ") " + this.userList.get(i).getName());
+			System.out.println("\t" + (i + 1) + ") " + this.userList.get(i).getName());
 		
 		System.out.println();
 		if (user)
@@ -310,7 +282,7 @@ public class Menu {
 		
 		int option = 0;
 		while (option == 0)
-			option = checkOption(this.userList.size());
+			option = this.checkOption(this.userList.size());
 		
 		return option;
 	}
@@ -383,6 +355,8 @@ public class Menu {
 		
 		this.userList.get(option - 1).getEvents().add(e);
 		Collections.sort(this.userList.get(option - 1).getEvents());
+		
+		this.fileChanged = true;
 	}
 
 	/**
@@ -397,11 +371,11 @@ public class Menu {
 		
 		if (size > 0)	{
 			for (int i = 0; i < size; i++)
-				System.out.println((i + 1) + ") " + this.userList.get(option - 1).getEvents().get(i));
+				System.out.println("\t" + (i + 1) + ") " + this.userList.get(option - 1).getEvents().get(i));
 			
 			System.out.println();
 			System.out.print("Which event would you like to delete? ");
-			int evOption = checkOption(size);
+			int evOption = this.checkOption(size);
 			
 			System.out.println();
 			System.out.println(this.userList.get(option - 1).getEvents().get(evOption - 1).getTitle() + " has been deleted");
@@ -412,6 +386,7 @@ public class Menu {
 			System.out.println("Calendar is empty.");
 		}
 		
+		this.fileChanged = true;
 	}
 
 	/**
@@ -426,7 +401,7 @@ public class Menu {
 		System.out.println();
 		
 		System.out.print("How would you like to sort? ");
-		int option = checkOption(2);
+		int option = this.checkOption(2);
 		
 		if (option == 1)
 			Collections.sort(this.userList);
@@ -435,7 +410,9 @@ public class Menu {
 		
 		System.out.println();
 		for (int i = 0; i < this.userList.size(); i++)
-			System.out.println((i + 1) + ") " + this.userList.get(i).getName());
+			System.out.println("\t" + (i + 1) + ") " + this.userList.get(i).getName());
+		
+		this.fileChanged = true;
 	}
 
 	/**
@@ -443,22 +420,49 @@ public class Menu {
 	 */
 	private void writeFile() {
 		Gson gson = new Gson();
+		
 		try {
 			String output = gson.toJson(this.cal);
 			BufferedWriter bw = new BufferedWriter(new FileWriter(this.fileName));
+			
 			bw.write(output);
 			bw.flush();
 			bw.close();
+			
+			this.fileChanged = false;
 		} catch (JsonIOException | IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * 
+	 * Terminates the program<br><br>
+	 * If the user has made changes, prompt to save the file<br>
+	 * Otherwise, no prompt
 	 */
 	private void exit() {
-		// TODO Auto-generated method stub
+		System.out.println();
+		
+		if (fileChanged)	{
+			System.out.println("Changes have been made since the file was last saved.");
+			System.out.println("\t1) Yes");
+			System.out.println("\t2) No");
+			System.out.print("Would you like to save the file before exiting? ");
+			int option = this.checkOption(2);
+			
+			System.out.println();
+			
+			if (option == 1)	{
+				this.writeFile();
+				System.out.println("File was saved.");
+			} else	{
+				System.out.println("File was not saved");
+			}
+			
+			System.out.println();
+			System.out.println("Thank you for using my program");
+		}
+			
 		return;
 	}
 }
