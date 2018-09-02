@@ -209,10 +209,10 @@ public class Menu {
 			System.out.print("What is the user's name? ");
 			String nameString = s.nextLine();
 			try	{
-				if (nameString.split(" ").length != 2)
+				if (nameString.indexOf(' ') == -1)
 					throw new ArrayIndexOutOfBoundsException();
 				
-				Name name = new Name(nameString.split(" ")[0], nameString.split(" ")[1]);
+				Name name = new Name(nameString.substring(0, nameString.indexOf(' ')), nameString.substring(nameString.indexOf(' ') + 1));
 				
 				if (toAdd)	{
 					if (this.containsName(this.userList, name))
