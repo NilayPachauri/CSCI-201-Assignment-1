@@ -82,6 +82,7 @@ public class Event implements Comparable<Event> {
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 * Sorts by Year, then Month, then Day
 	 */
 	@Override
 	public int compareTo(Event e) {

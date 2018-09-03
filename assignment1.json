@@ -2,10 +2,43 @@
   "Users": [
     {
       "Name": {
+        "Fname": "Jeffrey",
+        "Lname": "Miller"
+      },
+      "Events": [
+        {
+          "Title": "Lecture",
+          "Time": "8:00 am",
+          "Date": {
+            "Month": "August",
+            "Day": 25,
+            "Year": 2018
+          }
+        }
+      ]
+    },
+    {
+      "Name": {
+        "Fname": "Nilay",
+        "Lname": "Pachauri"
+      },
+      "Events": []
+    },
+    {
+      "Name": {
         "Fname": "Tommy",
         "Lname": "Trojan"
       },
       "Events": [
+        {
+          "Title": "Fight On!",
+          "Time": "12:00 am",
+          "Date": {
+            "Month": "September",
+            "Day": 2,
+            "Year": 1880
+          }
+        },
         {
           "Title": "Kristy's Birthday Party",
           "Time": "2:00 pm",
@@ -21,23 +54,6 @@
           "Date": {
             "Month": "September",
             "Day": 13,
-            "Year": 2018
-          }
-        }
-      ]
-    },
-    {
-      "Name": {
-        "Fname": "Jeffrey",
-        "Lname": "Miller"
-      },
-      "Events": [
-        {
-          "Title": "Lecture",
-          "Time": "8:00 am",
-          "Date": {
-            "Month": "August",
-            "Day": 25,
             "Year": 2018
           }
         }

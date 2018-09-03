@@ -92,10 +92,14 @@ public class Menu {
 		
 		try	{
 			option = s.nextInt();
-			s.nextLine(); // Removes the remaining characters in input
+			s.nextLine(); // Consume new-line character
 			if ((option < 1) || (option > num))
-				throw new InputMismatchException();
+				throw new NumberFormatException();
 		} catch	(InputMismatchException ime){
+			System.out.println("That is not a number");
+			s.nextLine(); // Consume the invalid input
+			option = 0;
+		} catch (NumberFormatException nfe)	{
 			System.out.println("That is not a valid option");
 			option = 0;
 		}
@@ -131,7 +135,7 @@ public class Menu {
 		return this.checkOption(8);
 	}
 
-	/*
+	/**
 	 * Prompts the user for the option to pick
 	 */
 	public int getOption()	{
@@ -141,7 +145,7 @@ public class Menu {
 		return option;
 	}
 	
-	/*
+	/**
 	 * Handles the option the user chose
 	 */
 	public void performOption(int option)	{
@@ -280,21 +284,22 @@ public class Menu {
 		for (int i = 0; i < this.userList.size(); i++)
 			System.out.println("\t" + (i + 1) + ") " + this.userList.get(i).getName());
 		
-		System.out.println();
-		if (user)	{
-			if (!toAdd)
-				System.out.print("Which user would you like to delete? ");
-		}	else	{
-			if (toAdd)
-				System.out.print("To which user would you like to add an event? ");
-			else
-				System.out.print("From which user would you like to delete an event? ");
-		}
-		
 		int option = 0;
-		while (option == 0)
+		do	{
+			System.out.println();
+			if (user)	{
+				if (!toAdd)
+					System.out.print("Which user would you like to delete? ");
+			}	else	{
+				if (toAdd)
+					System.out.print("To which user would you like to add an event? ");
+				else
+					System.out.print("From which user would you like to delete an event? ");
+			}
+			
 			option = this.checkOption(this.userList.size());
-		
+		} while(option == 0);
+			
 		return option;
 	}
 	
@@ -302,7 +307,6 @@ public class Menu {
 	 * Add an event to the Calendar under an existing User
 	 */
 	private void addEvent() {
-		// TODO Auto-generated method stub
 		
 		System.out.println();
 		
@@ -352,8 +356,11 @@ public class Menu {
 				
 				date = new Date(monthString.charAt(0) + monthString.substring(1).toLowerCase(), day, year);
 				check = true;
-			} catch (InputMismatchException | DateTimeException e) {
-				// TODO Auto-generated catch block
+			} catch (InputMismatchException ime)	{
+				System.out.println("That is not a valid input");
+				check = false;
+				s.nextLine();
+			} catch (DateTimeException dte) {
 				System.out.println("That is not a valid date");
 				check = false;
 			}
